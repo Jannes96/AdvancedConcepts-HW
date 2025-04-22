@@ -12,9 +12,27 @@ public class Inbox {
 	
 	public void getHeaders() {
 		for (Mail mail : Mails) {
-			System.out.println( String.valueOf(mail.isRead()) + " | " + mail.getSubject() + " | " + mail.getSenderAdress() + " | " + mail.getDatetime()) ;
+			if (mail.isRead()) {
+			System.out.println(  "read | " + mail.getSubject() + " | " + mail.getSenderAdress() + " | " + mail.getDatetime()) ;
+			} else {
+			System.out.println(  "unread | " + mail.getSubject() + " | " + mail.getSenderAdress() + " | " + mail.getDatetime());
+			}	
 		}
 	}
+	
+	public int countUnread() {
+		int i = 0;
+		for (Mail mail : Mails) {
+			if (mail.isRead() == false) {
+				i++;
+			}
+		}
+		return i;
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -20,8 +20,9 @@ public class Main {
 		
 		i1.getHeaders();
 		
+		int x = i1.countUnread();
 		
-		
+		System.out.println(x);
 		
 	}
 
