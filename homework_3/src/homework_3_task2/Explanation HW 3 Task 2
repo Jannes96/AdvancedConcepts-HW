@@ -1,0 +1,26 @@
+ 
+ Explanation
+ 
+ What is the static type and dynamic type of m1?
+	•	Static type of m1: Message (declared as Message m1)
+	•	Dynamic type of m1: Email (assigned with new Email())
+
+	
+ Which method is called and why ?	
+	•   The method getType() from Email is called.
+	•	This happens due to dynamic binding (also known as runtime polymorphism):
+        Java looks at the object’s actual type at runtime (Email) and calls the overridden method.
+        
+ 
+ Why can’t send() be called directly on m1?        
+    Because m1 has the static type Message, and Message does not declare a method send().
+    •	Even though the object is actually an Email, the compiler only sees Message, which doesn’t have send().
+    •	In Java, only methods declared in the static type are visible at compile time (unless type casting is used).
+ 
+ 
+ How can you safely call send() anyway?
+    You can use the instanceof operator to check the dynamic type, and then type-cast safely:
+    
+        if (m1 instanceof Email) {
+        ((Email) m1).send();  // prints: E-Mail sent
+     }
