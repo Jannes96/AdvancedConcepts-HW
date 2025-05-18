@@ -1,0 +1,36 @@
+
+ZUSATZFRAGEN
+
+1) Was passiert, wenn eine Exception geworfen, aber nicht gefangen wird
+
+Wenn eine Exception nicht gefangen wird (kein try-catch-Block vorhanden), 
+wird sie an den Aufrufer weitergereicht. Wird sie dort auch nicht behandelt, 
+beendet die Java Virtual Machine (JVM) das Programm und es wird ein Stacktrace ausgegeben.
+ 
+ 
+2) Vorteil vom Abfangen spezifischer Exceptions 
+
+Spezifische Exceptions wie InvalidShippingInfoException:
+	•	machen den Code verständlicher,
+	•	erlauben gezielte Fehlerbehandlung (z. B. spezifische Nachrichten oder Korrekturmaßnahmen),
+	•	erleichtern das Debugging,
+	•	vermeiden versehentliches Abfangen anderer Fehler, die nicht zusammengehören.
+	
+	
+3) Wann sollte ein try with ressources genutzt werden
+
+try-with-resources wird verwendet, wenn eine Ressource (z. B. File, Scanner,
+ Connection) geöffnet wird, die automatisch geschlossen werden soll.
+ 
+ try (Scanner scanner = new Scanner(new File("data.txt"))) {
+    while (scanner.hasNext()) {
+        System.out.println(scanner.nextLine());
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+
+Vorteile:
+	•	automatische Freigabe der Ressourcen
+	•	kein Risiko von Ressourcenlecks
+	•	lesbarer und sicherer Code

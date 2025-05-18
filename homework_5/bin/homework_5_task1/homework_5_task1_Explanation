@@ -1,0 +1,70 @@
+Is this dependency injection?
+
+No, this is not an example of dependency injection.
+
+Why?
+
+Dependency injection (DI) means that a class receives its dependencies from the outside, rather than creating or deeply accessing them internally.
+
+In your code:
+	•	EComController creates the ShippingInfo, Profile, and Customer directly using new.
+	•	There is no injection framework (like Spring), nor a constructor parameter that receives a pre-configured dependency.
+	
+	
+	
+	Dependency Injection would look like: 
+	public class EComController {
+    public static void main(String[] args) {
+        ShippingInfo shippingInfo = new ShippingInfo("Munich", 80331, "Germany");
+        Profile profile = new Profile(shippingInfo);
+        Customer customer = new Customer(profile, 123);
+
+        printShippingLabel(customer);
+    }
+
+    public static void printShippingLabel(Customer customer) {
+        System.out.println("Shipping to: " + customer.getShippingCity());
+    }
+}
+
+
+
+
+LAW OF DEMETER
+
+What is the Law of Demeter?
+
+Also known as “Don’t Talk to Strangers”, it says:
+
+A method M of object O may only call the methods of:
+	1.	O itself
+	2.	Objects passed as parameters
+	3.	Objects it creates
+	4.	Its direct fields
+
+Current Code:
+
+customer.getProfile().getShippingInfo().getCity();
+
+You’re chaining three levels of method calls:
+	•	Customer → Profile → ShippingInfo → getCity()
+
+So EComController is accessing deep internal structure of Customer, which it should not know about.
+
+This violates encapsulation and the Law of Demeter.
+
+
+Fix: Delegate the Responsibility
+
+Move the logic into the Customer class:
+
+// In Customer.java
+public String getShippingCity() {
+    return profile.getShippingInfo().getCity();
+}
+then use:
+
+System.out.println("Shipping to: " + customer.getShippingCity());
+
+
+
