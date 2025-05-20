@@ -36,11 +36,8 @@ public class MatrixMultMain {
         int colsB = B[0].length;
 
         
-        // Es entsteht eine [(firstMatrix - row) X (secondMatrix - col] 
+        // Es entsteht eine [(firstMatrix - row) X (secondMatrix - col]
         int[][] result = new int[rowsA][colsB];
-
-        // Create and start threads
-   
 
         return result;
     }
